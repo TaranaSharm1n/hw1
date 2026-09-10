@@ -18,6 +18,26 @@ void split(Node*& in, Node*& odds, Node*& evens)
 {
   /* Add code here */
 // WRITE YOUR CODE HERE
+
+  if(in == nullptr){ //base case 
+    return;
+  }
+
+  //start from end for largest numbers 
+  Node* current = in; 
+  in = in->next; 
+  current->next = nullptr; 
+
+  split(in, odds, evens);
+
+  //decide and attach to front based on even or odd 
+  if(current->value % 2 == 0){
+    current->next = evens; 
+    evens = current;
+  } else {
+    current->next = odds; 
+    odds = current;
+  }
 }
 
 /* If you needed a helper function, write it here */
